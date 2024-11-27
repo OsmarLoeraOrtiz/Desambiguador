@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: desambiguador
+    #restart: always
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+      # - 80:80
+    volumes: 
+      - ./:/app
+
+  db:
+    image: mariadb
+    container_name: desambiguador-db
+    #restart: always
+    environment:
+      MYSQL_DATABASE: desambiguador
+      MYSQL_USER: desambiguadoruser
+      MYSQL_PASSWORD: admin1234
+      MYSQL_ROOT_PASSWORD: admin1234
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 3310:3306
+volumes:
+  db:    
+
+

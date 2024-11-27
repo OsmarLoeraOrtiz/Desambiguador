@@ -1,0 +1,78 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block links %}
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+
+{% endblock  %}
+{% block content %}
+    <div class="text-center my-4">
+        <h1 class="display-5 fw-bold">Documentos de Especificación de Requisitos de Software</h1>
+        <p class="lead text-muted">Lista de documentos analizados por el sistema.</p>
+    </div>
+
+    {% if documentos %}
+        <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row g-4">
+                {% for documento in documentos %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm hover-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="doc-icon me-3">
+                                    <i class="fas fa-file-alt fa-2x text-primary"></i>
+                                </div>
+                                <h5 class="card-title mb-0 text-truncate">{{ documento.nombre }}</h5>
+                            </div>
+                            
+                            <p class="card-text text-muted small mb-2">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                Subido el: {{ documento.fecha_subida|date:"d/m/Y" }}
+                            </p>
+                            
+                            <p class="card-text text-muted small mb-3">
+                                <i class="fas fa-user me-2"></i>
+                                Por: {{ documento.usuario.username }}
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="btn-group">
+                                    <a href="" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye me-1"></i> Ver
+                                    </a>
+                                </div>
+                                <span class="badge bg-success">{{ documento.estado }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center py-5">
+                    <i class="fas fa-file-alt fa-4x text-muted mb-3"></i>
+                    <h5 class="text-muted">No hay documentos aún</h5>
+                    <p class="text-muted mb-3">Comienza analizando tu primer documento de especificación.</p>
+                    <a href="{% url 'deteccion' %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Analizar Documento
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="position-fixed bottom-0 end-0 p-4">
+        <a href="{% url 'deteccion' %}" class="btn btn-primary btn-lg rounded-circle shadow">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+{% endblock %}

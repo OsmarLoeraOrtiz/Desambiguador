@@ -1,0 +1,67 @@
+{% extends "base2.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">🔍 Detectar Ambigüedades</h2>
+
+    <!-- Formulario para seleccionar el documento -->
+    <form method="POST" class="shadow p-4 rounded bg-light">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="documento" class="form-label">Seleccione un Documento:</label>
+            <select name="documento" id="documento" class="form-select">
+                <option disabled selected>Seleccione un documento...</option>
+                {% for doc in documentos %}
+                <option value="{{ doc.id }}">{{ doc.original_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-search"></i> Detectar Ambigüedades
+        </button>
+    </form>
+
+    <!-- Mensajes de error o confirmación -->
+    {% if messages %}
+    <div class="alert alert-warning mt-3">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Mostrar ambigüedades detectadas -->
+    {% if resultado and resultado|length > 0 %}
+    <h3 class="text-success mt-5"><i class="fas fa-exclamation-triangle"></i> Ambigüedades Detectadas</h3>
+    <table class="table table-hover table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>ID del Requisito</th>
+                <th>Texto del Requisito</th>
+                <th>Ambigüedades</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for amb in resultado %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ amb.requirement_id }}</td>
+                <td>{{ amb.requirement_text }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            {{ amb.description }}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-info mt-4">
+        <p>No se detectaron ambigüedades en los requisitos del documento seleccionado.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

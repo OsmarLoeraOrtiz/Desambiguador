@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Inicio - Sistema de Detección de Ambigüedades{% endblock %}
+
+{% block content %}
+<!-- Cargar Font Awesome para los iconos -->
+<link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+
+<!-- Contenedor principal con flexbox -->
+
+<!-- Sección de presentación -->
+<section class="jumbotron text-center bg-primary text-white py-5">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Bienvenido a AmbiguitySolver</h1>
+        <p class="lead">Tu solución avanzada para detectar y resolver ambigüedades en documentos de software.</p>
+        <a href="#about" class="btn btn-outline-light btn-lg mt-3">Saber más</a>
+    </div>
+</section>
+
+<!-- Sección "Acerca del sistema" -->
+<section id="about" class="container py-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <h2 class="fw-bold">¿Qué es AmbiguitySolver?</h2>
+            <p>AmbiguitySolver es una herramienta avanzada diseñada para ayudar a los analistas de software a identificar ambigüedades en la redacción de requisitos y otros documentos. A través de técnicas de procesamiento de lenguaje natural, el sistema detecta palabras o frases que pueden llevar a interpretaciones erróneas y proporciona posibles soluciones.</p>
+            <a href="#features" class="btn btn-primary mt-3">Ver características</a>
+        </div>
+        <div class="col-lg-6">
+            <img src="https://via.placeholder.com/500x300" alt="Ilustración del sistema" class="img-fluid rounded shadow">
+        </div>
+    </div>
+</section>
+
+<!-- Sección "Características" -->
+<section id="features" class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-4">Características</h2>
+        <p class="text-center text-muted mb-5">Descubre las principales funcionalidades de AmbiguitySolver</p>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="icon-box bg-primary text-white p-4 rounded shadow-sm">
+                    <i class="fas fa-search fa-3x mb-3"></i>
+                    <h4>Detección de ambigüedades</h4>
+                    <p>Identifica automáticamente términos y frases ambiguas en documentos de requisitos.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="icon-box bg-primary text-white p-4 rounded shadow-sm">
+                    <i class="fas fa-lightbulb fa-3x mb-3"></i>
+                    <h4>Propuestas de soluciones</h4>
+                    <p>Ofrece sugerencias para resolver las ambigüedades detectadas y mejorar la claridad del documento.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="icon-box bg-primary text-white p-4 rounded shadow-sm">
+                    <i class="fas fa-file-alt fa-3x mb-3"></i>
+                    <h4>Historial de análisis</h4>
+                    <p>Mantén un registro de los documentos analizados y de las soluciones aplicadas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección "¿Cómo funciona?" -->
+<section id="how-it-works" class="container py-5">
+    <h2 class="text-center fw-bold mb-4">¿Cómo funciona?</h2>
+    <p class="text-center text-muted mb-5">Un vistazo al proceso de detección y solución de ambigüedades.</p>
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="step-box p-4 rounded shadow-sm">
+                <i class="fas fa-upload fa-3x text-primary mb-3"></i>
+                <h4>Cargar documento</h4>
+                <p>Sube un documento de requisitos para que el sistema lo analice.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="step-box p-4 rounded shadow-sm">
+                <i class="fas fa-microscope fa-3x text-primary mb-3"></i>
+                <h4>Análisis automático</h4>
+                <p>El sistema revisa el documento y detecta posibles ambigüedades.</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="step-box p-4 rounded shadow-sm">
+                <i class="fas fa-check-circle fa-3x text-primary mb-3"></i>
+                <h4>Generación de soluciones</h4>
+                <p>Se proponen soluciones para resolver cada ambigüedad detectada.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

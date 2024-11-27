@@ -1,0 +1,54 @@
+{% extends "base2.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">📄 Identificar Requisitos</h2>
+
+    <!-- Formulario para ingresar texto o cargar archivo PDF -->
+    <form method="POST" enctype="multipart/form-data" class="shadow p-4 rounded bg-light" action="{% url 'identificar_requisitos' %}" >
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="requisitos_texto" class="form-label">Texto de Requisitos:</label>
+            <textarea name="requisitos_texto" id="requisitos_texto" rows="4" class="form-control"
+                placeholder="Escribe aquí los requisitos"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="requisitos_archivo" class="form-label">Subir Archivo PDF:</label>
+            <input type="file" name="requisitos_archivo" id="requisitos_archivo" class="form-control"
+                accept="application/pdf">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-check"></i> Identificar Requisitos
+        </button>
+    </form>
+
+    <!-- Mensajes de error o confirmación -->
+    {% if messages %}
+    <div class="alert alert-warning mt-3">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Mostrar los requisitos identificados -->
+    {% if requisitos %}
+    <h3 class="text-success mt-5"><i class="fas fa-list-alt"></i> Requisitos Identificados</h3>
+    <table class="table table-hover table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Texto del Requisito</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for req in requisitos %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ req.texto }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}

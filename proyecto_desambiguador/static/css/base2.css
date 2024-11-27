@@ -1,0 +1,26 @@
+        /* Estilo para usar flexbox en el layout */
+        body {
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Menú lateral */
+        .sidebar {
+            width: 250px;
+            background-color: #000000;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        /* Contenido principal */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .card {
+            overflow: hidden;
+        }
